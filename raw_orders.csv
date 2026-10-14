@@ -1,0 +1,11 @@
+order_id,customer_id,order_date,amount,cost,status
+101,1,2026-01-01,1500,900,delivered
+102,2,2026-01-02,800,500,delivered
+103,1,2026-01-03,2200,1400,delivered
+104,3,2026-01-04,1200,700,cancelled
+105,2,2026-01-05,3000,1800,delivered
+106,4,2026-01-06,500,250,pending
+107,3,2026-01-07,1800,1000,delivered
+108,5,2026-01-08,950,600,delivered
+109,1,2026-01-09,2500,1500,delivered
+110,4,2026-01-10,700,400,cancelled
