@@ -1,32 +1,30 @@
 version: 2
 
 models:
+  - name: stg_orders
+    description: "Cleans and standardizes raw e-commerce order data."
+    columns:
+      - name: order_id
+        description: "Unique identifier for each order."
+        data_tests:
+          - unique
+          - not_null
 
-- name: stg_orders
-  description: "Cleans and standardizes raw e-commerce order data."
-  columns:
-  
-  - name: order_id
-    description: "Unique identifier for each order."
-    data_tests:
-    - unique
-    - not_null
+  - name: int_order_profit
+    description: "Calculates profit for each order as amount minus cost."
 
-- name: int_order_profit
-  description: "Calculates profit for each order as amount minus cost."
+  - name: fct_orders
+    description: "Analytics mart containing delivered orders only."
+    columns:
+      - name: order_id
+        description: "Unique identifier for each delivered order."
+        data_tests:
+          - unique
+          - not_null
 
-- name: fct_orders
-  description: "Analytics mart containing delivered orders only."
-  columns:
-  
-  - name: order_id
-    description: "Unique identifier for each delivered order."
-    data_tests:
-    - unique
-    - not_null
-  - name: status
-    description: "Order delivery status; only delivered orders are included."
-    data_tests:
-    - accepted_values:
-      arguments:
-      values: ['delivered']
+      - name: status
+        description: "Order delivery status; only delivered orders are included."
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: ['delivered']
