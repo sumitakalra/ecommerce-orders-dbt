@@ -9,6 +9,19 @@ seed-paths: ["seeds"]
 test-paths: ["tests"]
 clean-targets: ["target", "dbt_packages"]
 
+
+seeds:
+  de_portfolio_dbt:
+    raw_orders:
+      +column_types:
+        order_id: integer
+        customer_id: integer
+        order_date: date
+        amount: integer
+        cost: integer
+        status: varchar
+        updated_at: timestamp
+
 models:
   de_portfolio_dbt:
     staging:
