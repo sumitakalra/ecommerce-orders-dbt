@@ -1,3 +1,4 @@
+
 {{
     config(
         materialized='incremental',
@@ -12,14 +13,27 @@ SELECT
     order_date,
     amount,
     cost,
-    amount - cost AS profit,
+    {{ calculate_profit('amount', 'cost') }} AS profit,
     status,
     updated_at
+
 FROM {{ ref('stg_orders') }}
 
+{% if var('apply_minimum_amount_filter', true) %}
+WHERE amount >= {{ var('minimum_order_amount', 1000) }}
+{% endif %}
+
 {% if is_incremental() %}
-WHERE updated_at > (
-    SELECT COALESCE(MAX(updated_at), TIMESTAMP '1900-01-01 00:00:00')
+{% if var('apply_minimum_amount_filter', true) %}
+AND
+{% else %}
+WHERE
+{% endif %}
+updated_at > (
+    SELECT COALESCE(
+        MAX(updated_at),
+        TIMESTAMP '1900-01-01 00:00:00'
+    )
     FROM {{ this }}
 )
 {% endif %}

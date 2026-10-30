@@ -1,3 +1,4 @@
+
 name: 'de_portfolio_dbt'
 version: '1.0.0'
 config-version: 2
@@ -8,7 +9,6 @@ model-paths: ["models"]
 seed-paths: ["seeds"]
 test-paths: ["tests"]
 clean-targets: ["target", "dbt_packages"]
-
 
 seeds:
   de_portfolio_dbt:
@@ -21,6 +21,10 @@ seeds:
         cost: integer
         status: varchar
         updated_at: timestamp
+
+vars:
+  minimum_order_amount: 1000
+  apply_minimum_amount_filter: false
 
 models:
   de_portfolio_dbt:
