@@ -1,3 +1,4 @@
+
 version: 2
 
 models:
@@ -11,7 +12,25 @@ models:
           - not_null
 
   - name: int_order_profit
-    description: "Calculates profit for each order as amount minus cost."
+    description: "Calculates profit for each order using amount minus cost, with configurable minimum amount filtering."
+    columns:
+      - name: order_id
+        description: "Unique identifier for each order."
+        data_tests:
+          - unique
+          - not_null
+
+      - name: amount
+        description: "Total order amount."
+
+      - name: cost
+        description: "Total cost associated with the order."
+
+      - name: profit
+        description: "Calculated profit: order amount minus cost."
+
+      - name: updated_at
+        description: "Timestamp of the latest order update."
 
   - name: fct_orders
     description: "Analytics mart containing delivered orders only."
@@ -35,3 +54,6 @@ models:
             combination_of_columns:
               - order_id
               - customer_id
+
+  - name: dim_dates
+    description: "Date dimension containing calendar dates for analytical reporting."
