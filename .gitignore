@@ -1,7 +1,16 @@
+
+# dbt generated files
 target/
 logs/
 dbt_packages/
+
+# Local DuckDB database
 *.duckdb
 *.duckdb.wal
-pycache/
+
+# Python cache
+__pycache__/
+*.py[cod]
+
+# Local dbt credentials
 profiles.yml
